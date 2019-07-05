@@ -1,0 +1,15 @@
+sudo: true
+dist: ubuntu:18.04
+
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - docker build -t zabbix-server .
+      - docker images
+      - docker tag travis-ci-build-stages-demo $DOCKER_USERNAME/zabbix-server
+      - docker push $DOCKER_USERNAME/zabbix-server
+    - stage: test
+      script: docker run -d $DOCKER_USERNAME/zabbix-server
+    - script: docker run -d $DOCKER_USERNAME/zabbix-server
