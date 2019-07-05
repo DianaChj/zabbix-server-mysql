@@ -15,8 +15,8 @@ COPY script.sh /script.sh
 
 RUN sed 's/# DBPassword/DBPassword=password/g' /etc/zabbix/zabbix_server.conf
 RUN sed 's+# php_value date.timezone Europe/Riga+php_value date.timezone Europe/Riga+g' /etc/zabbix/apache.conf
-RUN service zabbix-server restart
-RUN service zabbix-agent restart
-RUN service apache2 restart
+#RUN service zabbix-server restart
+#RUN service zabbix-agent restart
+#RUN service apache2 restart
 
 CMD /script.sh ; sleep infinity
