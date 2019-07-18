@@ -21,4 +21,4 @@ RUN sed 's/# DBPassword/DBPassword=password/g' /etc/zabbix/zabbix_server.conf &&
     service zabbix-server restart && \
     service zabbix-agent restart && \
     service apache2 restart
-#CMD /script.sh ; sleep infinity
+CMD /script.sh ; sleep infinity
